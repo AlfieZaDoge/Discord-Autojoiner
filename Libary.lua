@@ -7,12 +7,20 @@ local function setClipboardLink(link)
         setclipboard(link)
         print("Discord invite copied to clipboard: " .. link)
     else
-        warn("Clipboard functionality not available.")
+        notify("Clipboard functionality not available.")
     end
 end
 
+local function notify(message)
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Discord Auto-Join",
+        Text = message,
+        Duration = 10
+    })
+end
+
 local function handleError(errorMessage)
-    warn("Error: " .. errorMessage)
+    notify("Error: " .. errorMessage)
 end
 
 local function main()
